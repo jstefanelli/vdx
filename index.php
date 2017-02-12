@@ -24,6 +24,7 @@
 				</div>
 			</div>
 		</div>
+	
 		<script>
 			function selectGalleryImg(id){
 				$(".selected_img").removeClass("selected_img");
