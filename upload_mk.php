@@ -5,6 +5,7 @@ class upload_info{
 	public $part_size;
 	public $curr_parts;
 	public $tmp_id;
+	public $name;
 }
 
 if(!is_ajax()){
@@ -17,6 +18,10 @@ if(!isset($_POST['n_parts'])){
 
 if(!isset($_POST['part_size'])){
 	die("No size");
+}
+
+if(!isset($_POST['name'])){
+	die("No name");
 }
 
 include_once 'header.php';
@@ -35,6 +40,7 @@ $inf->tot_parts = $_POST['n_parts'];
 $inf->part_size = $_POST['part_size'];
 $inf->curr_parts = 0;
 $inf->tmp_id = $id;
+$inf->name = $_POST['name'];
 
 $jsn_data = json_encode($inf);
 
