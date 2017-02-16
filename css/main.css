@@ -122,3 +122,90 @@ body {
     opacity: 1.0;
     transition-duration: 0.25s;
 }
+
+.main_cont{
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.error-text{
+    color:#CC4444;
+    display: inline-block;
+    font-weight: normal;
+    font-size: 16pt;
+    vertical-align: center;
+}
+
+.logincntr{
+    position: absolute;
+    right: 20px;
+    width: 300px;
+    top: 20px;
+    color: FFFFFF;
+    text-align: right;
+}
+
+.loginBar{
+    background-color: rgba(220, 220, 220, 0.7);
+    width: 300px;
+    height: 100px;
+    padding: 10px;
+    position: absolute;
+    top:-10px;
+    right: 0px;
+    border-radius: 5px;
+}
+
+.loginBar input{
+    width: 140px;
+    float: left;
+    margin-top: 5px;
+    height: 20px;
+}
+
+.loginBar button{
+    float: left;
+    margin-top: 30px;
+}
+
+.loginBar h1{
+    text-align: left;
+    height: 20px;
+    width: 140px;
+    font-size: 12pt;
+    color: black;
+    float: left;
+    display: block;
+    margin: 0;
+    margin-top: 5px;
+}
+
+.logincntr *{
+    display: none;
+}
+
+.logincntr:hover{
+    color:  rgba(0, 0, 0, 0);
+}
+
+.logincntr:hover *{
+    display: block;
+}
+
+.logoutcntr{
+    position: absolute;
+    right: 20px;
+    width: 300px;
+    top: 20px;
+    color: FFFFFF;
+    text-align: right;
+}
+
+.logoutcntr a{
+    cursor:pointer;
+}

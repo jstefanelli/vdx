@@ -17,15 +17,17 @@
 	<br />
 	<br />
 	<br />
-	<input type="file" id="files" /><br />
+	<input type="file" accept=".wmv, .mp4, .avi, .h264, .h265, .ogg, video/h264, video/h265, video/ogg, video/mp4" id="files" /><br />
 	<button onclick="doUpload()">Upload</button>
 	<script>
-
+	
 	function doUpload(){
 		var file = $('#files')[0].files[0];
-		startUpload(file);
+		startUpload(file, function(uuid){
+			alert("Done!");
+		});
 	}
-
+	
 	</script>
 	</body>
 </html>

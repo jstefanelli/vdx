@@ -1,0 +1,65 @@
+<?php
+
+include_once "../header.php";
+
+if(!is_ajax()){
+    die("not ajax");
+}
+
+if(!is_logged()){
+    die("nl");
+}
+
+if(!isset($_POST['tmp_uuid'])){
+    die("nvr"); // no video referenced
+}
+
+set_time_limit(120);
+
+if(!isset($_POST['title']) || strlen($_POST['title']) <= 0){
+    $title = "Untitled Video";
+}else{
+    $title = $_POST['title'];
+}
+
+if(!isset($_POST['desc'])|| strlen($_POST['desc']) <= 0){
+    $desc = " ";
+}else{
+    $desc = $_POST['desc'];
+}
+
+$tmp_uuid = $_POST['tmp_uuid'];
+
+$var = file_get_contents(LCL_HOME . "/tmp_up/" . $tmp_uuid . "/.info" );
+$info = json_decode($var);
+$fileName = $info->name;
+
+$ffm = FFMpeg\FFMpeg::create([
+    'ffmpeg.binaries' => "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe",
+    'ffprobe.binaries' => "C:\\Program Files\\ffmpeg\\bin\\ffprobe.exe"
+]);
+$video = $ffm->open(LCL_HOME . "\\tmp_up\\" . $tmp_uuid . "\\". $fileName );
+$usr_id = getUsrId();
+$res = $db->query("INSERT INTO videos(title, description, user_id) VALUES('$title', '$desc', '$usr_id')");
+if(!$res){
+    die("Error: " . mysqli_error($db));
+}
+$myId = $db->insert_id;
+$format = new FFMpeg\Format\Video\x264();
+$format->setAudioCodec("libfdk_aac");
+mkdir(LCL_HOME . "/videos/" . $myId);
+$video->filters()->framerate(new FFMpeg\Coordinate\Framerate(30))->synchronize();
+$video->save($format, LCL_HOME . "\\videos\\" . $myId . "\\original.avi");
+$video->filters()->framerate(new FFMpeg\Coordinate\Framerate(30))->resize(new FFMpeg\Coordinate\Dimension(320, 240))->synchronize();
+$video->save($format, LCL_HOME . "\\videos\\" . $myId . "\\240p.avi");
+$video->filters()->framerate(new FFMpeg\Coordinate\Framerate(30))->resize(new FFMpeg\Coordinate\Dimension(640,480))->synchronize();
+$video->save($format, LCL_HOME . "\\videos\\" . $myId . "\\480p.avi");
+
+
+die("OK");
+
+function is_ajax(){
+    return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+}
+
+?>

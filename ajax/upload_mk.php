@@ -24,7 +24,7 @@ if(!isset($_POST['name'])){
 	die("No name");
 }
 
-include_once 'header.php';
+include_once '../header.php';
 
 $id = mt_rand(0, 999999);
 while(file_exists(LCL_HOME . "/tmp_up/" . $id)){
