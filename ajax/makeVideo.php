@@ -35,25 +35,25 @@ $info = json_decode($var);
 $fileName = $info->name;
 
 $ffm = FFMpeg\FFMpeg::create([
-    'ffmpeg.binaries' => "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe",
-    'ffprobe.binaries' => "C:\\Program Files\\ffmpeg\\bin\\ffprobe.exe"
+    'ffmpeg.binaries' => FFMPEG_PATH,
+    'ffprobe.binaries' => FFPROBE_PATH
 ]);
-$video = $ffm->open(LCL_HOME . "\\tmp_up\\" . $tmp_uuid . "\\". $fileName );
+$video = $ffm->open(LCL_HOME . "/tmp_up/" . $tmp_uuid . "/". $fileName );
 $usr_id = getUsrId();
 $res = $db->query("INSERT INTO videos(title, description, user_id) VALUES('$title', '$desc', '$usr_id')");
 if(!$res){
     die("Error: " . mysqli_error($db));
 }
 $myId = $db->insert_id;
-$format = new FFMpeg\Format\Video\x264();
+$format = new FFMpeg\Format\Video\X264();
 $format->setAudioCodec("libfdk_aac");
 mkdir(LCL_HOME . "/videos/" . $myId);
-$video->filters()->framerate(new FFMpeg\Coordinate\Framerate(30))->synchronize();
-$video->save($format, LCL_HOME . "\\videos\\" . $myId . "\\original.avi");
-$video->filters()->framerate(new FFMpeg\Coordinate\Framerate(30))->resize(new FFMpeg\Coordinate\Dimension(320, 240))->synchronize();
-$video->save($format, LCL_HOME . "\\videos\\" . $myId . "\\240p.avi");
-$video->filters()->framerate(new FFMpeg\Coordinate\Framerate(30))->resize(new FFMpeg\Coordinate\Dimension(640,480))->synchronize();
-$video->save($format, LCL_HOME . "\\videos\\" . $myId . "\\480p.avi");
+$video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->synchronize();
+$video->save($format, LCL_HOME . "/videos/" . $myId . "/original.mp4");
+$video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->resize(new FFMpeg\Coordinate\Dimension(320, 240))->synchronize();
+$video->save($format, LCL_HOME . "/videos/" . $myId . "/240p.mp4");
+$video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->resize(new FFMpeg\Coordinate\Dimension(640,480))->synchronize();
+$video->save($format, LCL_HOME . "/videos/" . $myId . "/480p.mp4");
 
 
 die("OK");

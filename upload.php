@@ -17,7 +17,7 @@
 	<br />
 	<br />
 	<br />
-	<input type="file" accept=".wmv, .mp4, .avi, .h264, .h265, .ogg, video/h264, video/h265, video/ogg, video/mp4" id="files" /><br />
+	<input type="file" accept=".wmv, .avi, .ogg, video/h264, video/h265, video/ogg, video/mp4" id="files" /><br />
 	<button onclick="doUpload()">Upload</button>
 	<script>
 	

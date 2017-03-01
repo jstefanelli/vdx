@@ -14,9 +14,9 @@ if(!isset($_POST['usr_name'])){
 if(!isset($_POST['psw_enc'])){
     die("No Psw");
 }
-
 $usr = $_POST['usr_name'];
 $psw = $_POST['psw_enc'];
+
 
 $res = mysqli_query($db, "SELECT id FROM users WHERE username = '$usr' AND password_enc = '$psw'");
 if(!$res){
