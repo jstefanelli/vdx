@@ -1,316 +1,568 @@
-html,
-body {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#2020AA), to(#30FFAA));
-    background-image: -webkit-linear-gradient(top, #2020AA, #30FFAA);
-    background-image: -moz-linear-gradient(top, #2020AA, #30FFAA);
-    background-image: linear-gradient(to bottom, #2020AA, #30FFAA);
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-.header {
-    position: fixed;
-    width: 100%;
-    height: 59px;
-    top: 0;
-    left: 0;
-    background-color: rgba(20, 20, 20, 0.7);
-    z-index: 10;
-    padding-left: 10px;
-    -webkit-box-shadow: 0px -5px 30px 10px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px -5px 30px 10px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px -5px 30px 10px rgba(0, 0, 0, 0.75);
-}
-
-.header h1 {
-    color: white;
-    font-size: 18pt;
-    font-weight: bold;
-    vertical-align: center;
-    float: left;
-}
-
-.menubar {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-}
-
-.menubar .button {
-    display: block;
-    text-decoration: none;
-    color: default;
-    box-sizing: border-box;
-    color: white;
-    float: left;
-    height: 60px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    font-size: 16pt;
-    font-weight: 100;
-    transition-duration: 0.5s;
-    cursor: pointer;
-    border-bottom: 1px solid rgba(0, 0, 0, 0);
-}
-
-.menubar .button:hover {
-    border-bottom: 1px solid white;
-    transition-duration: 0.5s;
-}
-
-.button h1 {
-    font-size: 14pt;
-    font-weight: 100;
-    vertical-align: center;
-}
-
-.main_gallery {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    height: 450px;
-}
-
-.main_gallery a {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transition-duration: 1.5s;
-    cursor: pointer;
-}
-
-.main_gallery .selected_img {
-    opacity: 1;
-    transition-duration: 1.5s;
-}
-
-.main_gallery .button-bar {
-    position: absolute;
-    left: 50%;
-    bottom: 10px;
-    transform: translate(-50%, 0);
-    height: 15px;
-}
-
-.main_gallery button {
-    margin-left: 10px;
-    margin-right: 10px;
-    display: block;
-    z-index: 20;
-    height: 15px;
-    width: 15px;
-    border: none;
-    float: left;
-    opacity: 0.7;
-    bottom: 20px;
-    border-radius: 15px;
-    background-color: #AAAAAA;
-    transition-duration: 0.25s;
-    cursor: pointer;
-}
-
-.main_gallery button:hover {
-    opacity: 1.0;
-    transition-duration: 0.25s;
-}
-
-.main_cont {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 20px;
-    text-align: center;
-}
-
-.error-text {
-    color: #CC4444;
-    display: inline-block;
-    font-weight: normal;
-    font-size: 16pt;
-    vertical-align: center;
-}
-
-.logincntr {
-    position: absolute;
-    right: 20px;
-    width: 300px;
-    top: 20px;
-    color: FFFFFF;
-    text-align: right;
-}
-
-.loginBar {
-    background-color: rgba(220, 220, 220, 0.7);
-    width: 300px;
-    height: 100px;
-    padding: 10px;
-    position: absolute;
-    top: -10px;
-    right: 0px;
-    border-radius: 5px;
-}
-
-.loginBar input {
-    width: 140px;
-    float: left;
-    margin-top: 5px;
-    height: 20px;
-}
-
-.loginBar button {
-    float: left;
-    margin-top: 30px;
-}
-
-.loginBar h1 {
-    text-align: left;
-    height: 20px;
-    width: 140px;
-    font-size: 12pt;
-    color: black;
-    float: left;
-    display: block;
-    margin: 0;
-    margin-top: 5px;
-}
-
-.logincntr * {
-    display: none;
-}
-
-.logincntr:hover {
-    color: rgba(0, 0, 0, 0);
-}
-
-.logincntr:hover * {
-    display: block;
-}
-
-.logoutcntr {
-    position: absolute;
-    right: 20px;
-    width: 300px;
-    top: 20px;
-    color: FFFFFF;
-    text-align: right;
-}
-
-.logoutcntr a {
-    cursor: pointer;
-}
-
-.playercontainer {
-    width: 800px;
-    height: 450px;
-    position: relative;
-    margin-top: 60px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.playercontainer * {
-    position: absolute;
-}
-
-.playercontainer .playercontrols {
-    width: 100%;
-    height: 35px;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.playercontrols progress {
-    bottom: 30px;
-    width: 100%;
-}
-
-.playercontrols .fa-play,
-.playercontrols .fa-pause {
-    color: white;
-}
-
-.playercontrols .fa-volume-down {
-    left: 30px;
-}
-
-.playercontrols button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    position: absolute;
-    float: left;
-    margin: 10px;
-    height: 20px;
-    color: white;
-}
-
-.hidden {
-    opacity: 0;
-    transition-duration: 0.5s;
-}
-
-.hidden * {
-    opacity: 0;
-    transition-duration: 0.5s;
-}
-
-.playercontainer video {
-    top: 0;
-    width: 100%;
-    height: 100%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-progress {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: rgba(255, 255, 255, 0.3);
-    height: 5px;
-    border: none;
-}
-
-progress::hover {
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 1);
-}
-
-progress::-webkit-progress-bar {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: rgba(255, 255, 255, 0.3);
-    border: none;
-}
-
-progress::-webkit-progress-value {
-    background-image: -webkit-linear-gradient(right, #2020AA, #30FFAA);
-    background-image: linear-gradient(to right, #2020AA, #30FFAA);
-    opacity: 2;
-}
-
-progress::-webkit-progress-bar::hover {
-    background-color: rgba(255, 255, 255, 1);
-}
-
-progress::-moz-progress-bar {
-    background-image: -moz-linear-gradient(right, #2020AA, #30FFAA);
-    background-image: linear-gradient(to right, #2020AA, #30FFAA);
-    opacity: 2;
-}
-
-progress::-moz-progress-bar::hover {
-    background-color: rgba(255, 255, 255, 1);
-}
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: #DFDFDF;
+    }
+    
+    .header {
+        position: fixed;
+        width: 100%;
+        height: 59px;
+        top: 0;
+        left: 0;
+        background-color: rgba(20, 20, 20, 0.7);
+        z-index: 10;
+        padding-left: 10px;
+        -webkit-box-shadow: 0px -5px 30px 10px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px -5px 30px 10px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px -5px 30px 10px rgba(0, 0, 0, 0.75);
+    }
+    
+    .header::after {
+        content: "";
+        height: 2px;
+        position: fixed;
+        width: 100%;
+        z-index: 10;
+        top: 59px;
+        left: 0;
+        right: 0;
+        background-image: -webkit-gradient(linear, left top, right top, from(#2020AA), to(#30FFAA));
+        background-image: -webkit-linear-gradient(left, #2020AA, #30FFAA);
+        background-image: -moz-linear-gradient(left, #2020AA, #30FFAA);
+        background-image: -o-linear-gradient(left, #2020AA, #30FFAA);
+        background-image: linear-gradient(to right, #2020AA, #30FFAA);
+    }
+    
+    .header h1 {
+        color: white;
+        font-size: 18pt;
+        font-weight: bold;
+        vertical-align: center;
+        float: left;
+    }
+    
+    .searchbar {
+        font-size: 12pt;
+        color: white;
+        height: 60px;
+        padding-top: 5px;
+        vertical-align: middle;
+    }
+    
+    .menubar {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+    
+    .menubar .button {
+        display: block;
+        text-decoration: none;
+        color: default;
+        box-sizing: border-box;
+        color: white;
+        float: left;
+        height: 60px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        font-size: 16pt;
+        font-weight: 100;
+        transition-duration: 0.5s;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(0, 0, 0, 0);
+    }
+    
+    .menubar .button:hover {
+        border-bottom: 1px solid white;
+        transition-duration: 0.5s;
+    }
+    
+    .button h1 {
+        font-size: 14pt;
+        font-weight: 100;
+        vertical-align: center;
+    }
+    
+    .menubar .homebtn h1 {
+        box-sizing: border-box;
+        padding-left: 3px;
+        border-left: 1px solid rgba(0, 0, 0, 0);
+        transition-duration: 0.5s;
+        color: white;
+    }
+    
+    .menubar .homebtn:hover h1 {
+        transition-duration: 0.5s;
+        border-left: 1px solid #2020AA;
+        color: #2020AA;
+    }
+    
+    .menubar .browsebtn h1 {
+        box-sizing: border-box;
+        padding-left: 3px;
+        border-left: 1px solid rgba(0, 0, 0, 0);
+        transition-duration: 0.5s;
+        color: white;
+    }
+    
+    .menubar .browsebtn:hover h1 {
+        transition-duration: 0.5s;
+        border-left: 1px solid #258FAA;
+        color: #258FAA;
+    }
+    
+    .menubar .uploadbtn h1 {
+        box-sizing: border-box;
+        padding-left: 3px;
+        border-left: 1px solid rgba(0, 0, 0, 0);
+        transition-duration: 0.5s;
+        color: white;
+    }
+    
+    .menubar .uploadbtn:hover h1 {
+        transition-duration: 0.5s;
+        border-left: 1px solid #30FFAA;
+        color: #30FFAA;
+    }
+    
+    .main_gallery {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        height: 450px;
+    }
+    
+    .main_gallery a {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transition-duration: 1.5s;
+        cursor: pointer;
+    }
+    
+    .main_gallery .selected_img {
+        opacity: 1;
+        transition-duration: 1.5s;
+    }
+    
+    .main_gallery .button-bar {
+        position: absolute;
+        left: 50%;
+        bottom: 10px;
+        transform: translate(-50%, 0);
+        height: 15px;
+    }
+    
+    .main_gallery button {
+        margin-left: 10px;
+        margin-right: 10px;
+        display: block;
+        z-index: 20;
+        height: 15px;
+        width: 15px;
+        border: none;
+        float: left;
+        opacity: 0.7;
+        bottom: 20px;
+        border-radius: 15px;
+        background-color: #AAAAAA;
+        transition-duration: 0.25s;
+        cursor: pointer;
+    }
+    
+    .main_gallery button:hover {
+        opacity: 1.0;
+        transition-duration: 0.25s;
+    }
+    
+    .main_cont {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .error-text {
+        color: #CC4444;
+        display: inline-block;
+        font-weight: normal;
+        font-size: 16pt;
+        vertical-align: center;
+    }
+    
+    .logincntr {
+        position: absolute;
+        right: 20px;
+        width: 300px;
+        top: 20px;
+        z-index: 11;
+        color: FFFFFF;
+        text-align: right;
+    }
+    
+    .loginBar {
+        background-color: rgba(220, 220, 220, 0.7);
+        width: 300px;
+        height: 100px;
+        padding: 10px;
+        position: absolute;
+        top: -10px;
+        right: 0px;
+        border-radius: 5px;
+    }
+    
+    .loginBar input {
+        width: 140px;
+        float: right;
+        margin: none;
+        margin-top: 5px;
+        height: 25px;
+        padding: none;
+        padding-left: 1px;
+        padding-right: 1px;
+        border: none;
+        border-radius: 3px;
+    }
+    
+    .loginBar button {
+        float: left;
+        margin-top: 18px;
+        height: 25px;
+        background-color: rgb(20, 20, 70);
+        color: white;
+        border: none;
+        border-radius: 3px;
+    }
+    
+    .loginBar h1 {
+        text-align: left;
+        height: 25px;
+        width: 140px;
+        font-size: 12pt;
+        color: black;
+        float: left;
+        display: block;
+        margin: 0;
+        margin-top: 5px;
+        font-weight: normal;
+    }
+    
+    .logincntr * {
+        display: none;
+    }
+    
+    .logincntr:hover {
+        color: rgba(0, 0, 0, 0);
+    }
+    
+    .logincntr:hover * {
+        display: block;
+    }
+    
+    .logoutcntr {
+        position: absolute;
+        right: 20px;
+        width: 300px;
+        top: 20px;
+        color: FFFFFF;
+        text-align: right;
+    }
+    
+    .logoutcntr a {
+        cursor: pointer;
+    }
+    
+    .playercontainer {
+        width: 800px;
+        height: 450px;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .playercontainer * {
+        position: absolute;
+    }
+    
+    .playercontainer .playercontrols {
+        width: 100%;
+        height: 35px;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    .playercontrols progress {
+        bottom: 30px;
+        width: 100%;
+    }
+    
+    .playercontrols .fa-play,
+    .playercontrols .fa-pause {
+        color: white;
+    }
+    
+    .playercontrols .fa-volume-down {
+        left: 30px;
+    }
+    
+    .playercontrols button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        position: absolute;
+        float: left;
+        margin: 10px;
+        height: 20px;
+        color: white;
+    }
+    
+    .playercontrols #btn_240 {
+        float: right;
+        right: 150px;
+        transition-duration: 0.5s;
+    }
+    
+    .playercontrols #btn_240:hover {
+        color: #2020AA;
+        transition-duration: 0.5s;
+    }
+    
+    .playercontrols #btn_240.selected {
+        color: #2020AA;
+    }
+    
+    .playercontrols #btn_480 {
+        float: right;
+        right: 110px;
+        transition-duration: 0.5s;
+    }
+    
+    .playercontrols #btn_480:hover {
+        color: #258FAA;
+        transition-duration: 0.5s;
+    }
+    
+    .playercontrols #btn_480.selected {
+        color: #258FAA;
+    }
+    
+    .playercontrols #btn_orig {
+        float: right;
+        right: 40px;
+        transition-duration: 0.5s;
+    }
+    
+    .playercontrols #btn_fullscreen {
+        float: right;
+        right: 10px;
+        transition-duration: 0.5s;
+        cursor: pointer;
+    }
+    
+    .fullscreen {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        background-color: rgb(0, 0, 0);
+    }
+    
+    .playercontrols #btn_fullscreen:hover {
+        color: #30FFAA;
+        transition-duration: 0.5s;
+    }
+    
+    .playercontrols #btn_orig:hover {
+        color: #30FFAA;
+        transition-duration: 0.5s;
+    }
+    
+    .playercontrols #btn_orig.selected {
+        color: #30FFAA;
+    }
+    
+    .playercontrols .qualitybutton:hover {
+        cursor: pointer;
+    }
+    
+    .hidden {
+        opacity: 0;
+        transition-duration: 0.5s;
+    }
+    
+    .hidden * {
+        opacity: 0;
+        transition-duration: 0.5s;
+    }
+    
+    .playercontainer video {
+        top: 0;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    
+    progress {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: rgba(255, 255, 255, 0.3);
+        height: 10px;
+        border: none;
+    }
+    
+    progress[value]::hover {
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 1);
+    }
+    
+    progress[value]::-webkit-progress-bar {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: rgba(255, 255, 255, 0.3);
+        border: none;
+    }
+    
+    progress[value]::-webkit-progress-value {
+        background-image: -webkit-linear-gradient(left, #2020AA, #30FFAA);
+        opacity: 2;
+    }
+    
+    progress[value]::-webkit-progress-bar::hover {
+        background-color: rgba(255, 255, 255, 1);
+    }
+    
+    progress[value]::-moz-progress-bar {
+        background-image: -moz-linear-gradient(left, #2020AA, #30FFAA), -moz-linear-gradient(top, #FFFFFF, #000000);
+        opacity: 2;
+    }
+    
+    progress[value]::-moz-progress-bar::hover {
+        background-color: rgba(255, 255, 255, 1);
+    }
+    
+    @keyframes repeatAnim {
+        0% {
+            background-color: #ffffff;
+        }
+        50% {
+            background-color: #ff0000;
+        }
+        100% {
+            background-color: #00FF00;
+        }
+    }
+    
+    progress:not([value])::-webkit-progress-bar {
+        -webkit-appearance: none;
+        border: none;
+        animation-name: repeatAnim;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(255, 255, 255, 0.5) 33%, rgba(255, 255, 255, 0.5) 66%, transparent 66%), -webkit-linear-gradient(left, rgba(32, 32, 170, 0.75), rgba(30, 255, 170, 0.75));
+        background-size: 30px 100%, 100% 100%;
+        background-position: -60px 0px, 0px 0px;
+    }
+    
+    progress:not([value])::-moz-progress-bar {
+        -moz-appearance: none;
+        border: none;
+        animation-name: repeatAnim;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        background-image: -moz-linear-gradient(-45deg, transparent 33%, rgba(255, 255, 255, 0.5) 33%, rgba(255, 255, 255, 0.5) 66%, transparent 66%), -moz-linear-gradient(left, rgba(32, 32, 170, 0.75), rgba(30, 255, 170, 0.75));
+        background-size: 30px 100%, 100% 100%;
+        background-position: -60px 0px, 0px 0px;
+    }
+    
+    .video_title {
+        position: absolute;
+        top: 500px;
+        width: 800px;
+        overflow-x: auto;
+        display: block;
+        left: 0;
+        right: 300px;
+        font-weight: normal;
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 5px;
+        border-radius: 3px;
+        background-color: rgba(20, 20, 20, 0.9);
+        color: white;
+    }
+    
+    .video_description {
+        position: absolute;
+        width: 800px;
+        top: 560px;
+        font-weight: normal;
+        left: 0;
+        right: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        height: 100px;
+        padding: 5px;
+        border-radius: 3px;
+        background-color: rgba(20, 20, 20, 0.9);
+        color: white;
+    }
+    
+    .video_uploader {
+        position: absolute;
+        width: 800px;
+        top: 500px;
+        left: 0;
+        right: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: normal;
+        text-align: right;
+        padding: 5px;
+        color: white;
+    }
+    
+    .video_uploader a {
+        text-decoration: none;
+        color: rgb(20, 80, 255);
+    }
+    
+    .suggested_videos {
+        position: absolute;
+        top: 70px;
+        float: right;
+        right: 10px;
+        bottom: 10px;
+        width: 280px;
+        background-color: rgba(20, 20, 20, 0.9);
+        border-radius: 5px;
+        padding: 10px;
+        color: white;
+        font-size: 14pt;
+    }

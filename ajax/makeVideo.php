@@ -14,7 +14,7 @@ if(!isset($_POST['tmp_uuid'])){
     die("nvr"); // no video referenced
 }
 
-set_time_limit(120);
+set_time_limit(300);
 
 if(!isset($_POST['title']) || strlen($_POST['title']) <= 0){
     $title = "Untitled Video";
@@ -45,16 +45,23 @@ if(!$res){
     die("Error: " . mysqli_error($db));
 }
 $myId = $db->insert_id;
-$format = new FFMpeg\Format\Video\X264();
-$format->setAudioCodec("libfdk_aac");
+$format240 = new FFMpeg\Format\Video\X264();
+$format240->setAudioCodec("libfdk_aac");
+$format480 = new FFMpeg\Format\Video\X264();
+$format480->setAudioCodec("libfdk_aac");
+$formatOrig = new FFMpeg\Format\Video\X264();
+$formatOrig->setAudioCodec("libfdk_aac");
+$format240->setKiloBitrate(300);
+$format480->setKiloBitrate(1131);
+$formatOrig->setKiloBitrate(1024 * 5);
+
 mkdir(LCL_HOME . "/videos/" . $myId);
 $video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->synchronize();
-$video->save($format, LCL_HOME . "/videos/" . $myId . "/original.mp4");
+$video->save($formatOrig, LCL_HOME . "/videos/" . $myId . "/original.mp4");
 $video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->resize(new FFMpeg\Coordinate\Dimension(320, 240))->synchronize();
-$video->save($format, LCL_HOME . "/videos/" . $myId . "/240p.mp4");
+$video->save($format240, LCL_HOME . "/videos/" . $myId . "/240p.mp4");
 $video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->resize(new FFMpeg\Coordinate\Dimension(640,480))->synchronize();
-$video->save($format, LCL_HOME . "/videos/" . $myId . "/480p.mp4");
-
+$video->save($format480, LCL_HOME . "/videos/" . $myId . "/480p.mp4");
 
 die("OK");
 

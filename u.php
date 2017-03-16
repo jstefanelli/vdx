@@ -42,6 +42,7 @@ include_once 'header.php';
                 }
                 startUpload(file, function(uuid){
                     //alert("Uploaded: " + uuid);
+                    alert("Upload Complete");
                     var title = $("#txtTitle").val();
                     var desc = $("#txtDesc").val();
                     $.post("ajax/makeVideo.php", {tmp_uuid: uuid, title: title, desc: desc}, function(data){
