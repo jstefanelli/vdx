@@ -8,6 +8,7 @@ function doLogin() {
     $.post("ajax/login.php", { usr_name: usr, psw_enc: psw_enc }, function(response) {
         console.log("Login: " + response);
         window.location.reload();
+        $("#pippo").attr("disabled");
     });
 }
 

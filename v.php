@@ -71,7 +71,7 @@
 		?>
 		<div class="playercontainer" >
 			<video id="vd1">
-				<source id="src0" src="<?php echo(VDX_HOME); ?>/videos/<?php echo($video_id); ?>/240p.mp4" type="video/mp4" />
+				<source id="src0" />
 			</video>
 			<div class="playercontrols" id="ctrls">
 				<button id="play_pause_btn" class="playButton fa fa-play" onclick="playVideo(1)"></button>
