@@ -20,46 +20,72 @@ var isPlaying;
 var status;
 var isFullscreen;
 
+var mirrorAddress;
+var playbackId;
+
 document.addEventListener("DOMContentLoaded", function() {
-    mediaPlayer = $("#vd1").get(0);
-    mediaPlayer.addEventListener("ended", onVideoEnd);
-    mediaPlayer.addEventListener("timeupdate", onVideoProgress);
-    mediaPlayer.addEventListener("waiting", onVideoBuffering);
-    container = $(".playercontainer")[0];
-    container.addEventListener("mouseenter", function() {
-        controls.removeClass("hidden");
-    });
-    container.addEventListener("mouseleave", function() {
+    $.post("../ajax/request_playback.php", {}, function(data) {
+        console.log(data);
+        var json = JSON.parse(data);
+        mirrorAddress = json.mirrorAddress;
+        playbackId = json.playbackId;
+
+        $(window).on('unload', function() {
+
+            console.log("x");
+            $.ajax({
+                type: 'POST',
+                url: "../ajax/endPlayback.php",
+                data: { plbk_id: playbackId },
+                async: false,
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
+        mediaPlayer = $("#vd1").get(0);
+        mediaPlayer.addEventListener("ended", onVideoEnd);
+        mediaPlayer.addEventListener("timeupdate", onVideoProgress);
+        mediaPlayer.addEventListener("waiting", onVideoBuffering);
+        container = $(".playercontainer")[0];
+        container.addEventListener("mouseenter", function() {
+            controls.removeClass("hidden");
+        });
+        container.addEventListener("mouseleave", function() {
+            controls.addClass("hidden");
+        });
+        container = $(".playercontainer");
+        playPauseBtn = $("#play_pause_btn");
+        progressBar = $("#progress");
+        progressBar.on("click", onProgressClick);
+        controls = $("#ctrls");
         controls.addClass("hidden");
+
+        btn240 = $("#btn_240");
+        btn480 = $("#btn_480");
+        btnOrig = $("#btn_orig");
+        btnFullscreen = $("#btn_fullscreen");
+
+        btn240.on("click", setQuality240);
+        btn480.on("click", setQuality480);
+        btnOrig.on("click", setQualityOrig);
+        btnFullscreen.on("click", switchFS);
+
+        sourceElement = $("#src0");
+
+        source240 = mirrorAddress + "/videos/" + video_id + "/240p.mp4";
+        source480 = mirrorAddress + "/videos/" + video_id + "/480p.mp4";
+        sourceOrig = mirrorAddress + "/videos/" + video_id + "/original.mp4";
+        isPlaying = false;
+        isFullscreen = false;
+        $(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(e) {
+            console.log(e);
+
+        });
+        setQuality480();
     });
-    container = $(".playercontainer");
-    playPauseBtn = $("#play_pause_btn");
-    progressBar = $("#progress");
-    progressBar.on("click", onProgressClick);
-    controls = $("#ctrls");
-    controls.addClass("hidden");
 
-    btn240 = $("#btn_240");
-    btn480 = $("#btn_480");
-    btnOrig = $("#btn_orig");
-    btnFullscreen = $("#btn_fullscreen");
-
-    btn240.on("click", setQuality240);
-    btn480.on("click", setQuality480);
-    btnOrig.on("click", setQualityOrig);
-    btnFullscreen.on("click", switchFS);
-
-    sourceElement = $("#src0");
-
-    source240 = VDX_HOME + "/videos/" + video_id + "/240p.mp4";
-    source480 = VDX_HOME + "/videos/" + video_id + "/480p.mp4";
-    sourceOrig = VDX_HOME + "/videos/" + video_id + "/original.mp4";
-    isPlaying = false;
-    isFullscreen = false;
-    $(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(e) {
-        console.log(e);
-
-    });
 });
 
 function setQuality240(event) {
