@@ -63,6 +63,18 @@ $video->save($format240, LCL_HOME . "/videos/" . $myId . "/240p.mp4");
 $video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->resize(new FFMpeg\Coordinate\Dimension(640,480))->synchronize();
 $video->save($format480, LCL_HOME . "/videos/" . $myId . "/480p.mp4");
 
+$qry = "SELECT * FROM mirrors";
+$res = $db->query($qry);
+if(!$res){
+    die("Error: Query Failed");
+}
+while($row = $res->fetch_array()){
+
+    exec("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/original.mp4" . " --id " . $myId);    
+    exec("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/240p.mp4" . " --id " . $myId);  
+    exec("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/480p.mp4" . " --id " . $myId);  
+    file_put_contents(LCL_HOME . "/videos/" . $myId . "/uploaded.inf", "Uploaded to " . $row['address'] . " with command:\n" . "mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/480p.mp4" . " --id " . $myId);
+}
 die("OK");
 
 function is_ajax(){
