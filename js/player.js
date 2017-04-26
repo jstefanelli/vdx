@@ -24,7 +24,7 @@ var mirrorAddress;
 var playbackId;
 
 document.addEventListener("DOMContentLoaded", function() {
-    $.post("../ajax/request_playback.php", {}, function(data) {
+    $.post(VDX_HOME + "/ajax/request_playback.php", {}, function(data) {
         console.log(data);
         var json = JSON.parse(data);
         mirrorAddress = json.mirrorAddress;
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("x");
             $.ajax({
                 type: 'POST',
-                url: "../ajax/endPlayback.php",
+                url: VDX_HOME + "/ajax/endPlayback.php",
                 data: { plbk_id: playbackId },
                 async: false,
                 success: function(data) {

@@ -5,7 +5,7 @@ function doLogin() {
     sha.update(psw);
     var psw_enc = sha.getHash("HEX");
 
-    $.post("ajax/login.php", { usr_name: usr, psw_enc: psw_enc }, function(response) {
+    $.post(VDX_HOME + "/ajax/login.php", { usr_name: usr, psw_enc: psw_enc }, function(response) {
         console.log("Login: " + response);
         window.location.reload();
         $("#pippo").attr("disabled");

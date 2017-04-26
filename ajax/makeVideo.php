@@ -56,11 +56,11 @@ $format480->setKiloBitrate(1131);
 $formatOrig->setKiloBitrate(1024 * 5);
 
 mkdir(LCL_HOME . "/videos/" . $myId);
-$video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->synchronize();
+$video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->resize(new FFMpeg\Coordinate\Dimension(1920, 1080))->synchronize();
 $video->save($formatOrig, LCL_HOME . "/videos/" . $myId . "/original.mp4");
-$video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->resize(new FFMpeg\Coordinate\Dimension(320, 240))->synchronize();
+$video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->resize(new FFMpeg\Coordinate\Dimension(426, 240))->synchronize();
 $video->save($format240, LCL_HOME . "/videos/" . $myId . "/240p.mp4");
-$video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->resize(new FFMpeg\Coordinate\Dimension(640,480))->synchronize();
+$video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->resize(new FFMpeg\Coordinate\Dimension(854,480))->synchronize();
 $video->save($format480, LCL_HOME . "/videos/" . $myId . "/480p.mp4");
 
 $qry = "SELECT * FROM mirrors";
@@ -70,15 +70,25 @@ if(!$res){
 }
 while($row = $res->fetch_array()){
 
-    exec("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/original.mp4" . " --id " . $myId);    
-    exec("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/240p.mp4" . " --id " . $myId);  
-    exec("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/480p.mp4" . " --id " . $myId);  
-    file_put_contents(LCL_HOME . "/videos/" . $myId . "/uploaded.inf", "Uploaded to " . $row['address'] . " with command:\n" . "mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/480p.mp4" . " --id " . $myId);
+    execInBackground("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/original.mp4" . " --id " . $myId);    
+    execInBackground("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/240p.mp4" . " --id " . $myId);  
+    execInBackground("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/480p.mp4" . " --id " . $myId);  
+    //file_put_contents(LCL_HOME . "/videos/" . $myId . "/uploaded.inf", "Uploaded to " . $row['address'] . " with command:\n" . "mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/480p.mp4" . " --id " . $myId);
 }
 die("OK");
 
 function is_ajax(){
     return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 }
+
+function execInBackground($cmd) {
+    if (substr(php_uname(), 0, 7) == "Windows"){
+        pclose(popen("start /B ". $cmd, "r")); 
+    }
+    else {
+        exec($cmd . " > /dev/null &");  
+    }
+} 
+
 
 ?>

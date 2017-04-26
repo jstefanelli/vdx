@@ -3,7 +3,7 @@
 include_once "../header.php";
 
 if(!is_ajax()){
-    header("location: ..");
+    //header("location: ..");
     die("Not ajax");
 }
 

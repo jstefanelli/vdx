@@ -8,6 +8,7 @@
 		<?php
 			include_once 'default_head.php';
 		?>
+		<script src="<?php echo(VDX_HOME);?>/js/player.js"></script>
 	</head>
 	<body>
 

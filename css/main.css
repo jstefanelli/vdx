@@ -263,6 +263,8 @@
     
     .logincntr * {
         display: none;
+        transition-duration: 0.5s;
+        transition-delay: 3s;
     }
     
     .logincntr:hover {
@@ -271,6 +273,7 @@
     
     .logincntr:hover * {
         display: block;
+        transition-duration: 0.5s;
     }
     
     .logoutcntr {
