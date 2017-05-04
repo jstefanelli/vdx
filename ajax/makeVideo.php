@@ -62,17 +62,18 @@ $video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->resize(ne
 $video->save($format240, LCL_HOME . "/videos/" . $myId . "/240p.mp4");
 $video->filters()->framerate(new FFMpeg\Coordinate\FrameRate(30), 15)->resize(new FFMpeg\Coordinate\Dimension(854,480))->synchronize();
 $video->save($format480, LCL_HOME . "/videos/" . $myId . "/480p.mp4");
-
+$frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1));
+$frame->save(LCL_HOME . "/videos/" . $myId . '/thumb.jpg');
 $qry = "SELECT * FROM mirrors";
 $res = $db->query($qry);
 if(!$res){
     die("Error: Query Failed");
 }
 while($row = $res->fetch_array()){
-
     execInBackground("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/original.mp4" . " --id " . $myId);    
     execInBackground("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/240p.mp4" . " --id " . $myId);  
     execInBackground("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/480p.mp4" . " --id " . $myId);  
+    execInBackground("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/thumb.jpg" . " --id " . $myId);  
     //file_put_contents(LCL_HOME . "/videos/" . $myId . "/uploaded.inf", "Uploaded to " . $row['address'] . " with command:\n" . "mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/480p.mp4" . " --id " . $myId);
 }
 die("OK");
