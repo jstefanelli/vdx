@@ -15,7 +15,7 @@ include_once 'header.php';
     <?php
         include 'menu.php';
     ?>
-    <div class="main_cont">
+    <div class="index-content">
 		<?php
         if(!is_logged()){
         ?>
@@ -49,6 +49,11 @@ include_once 'header.php';
                         console.log("Make Video: " + data);
                     })
                 });
+            }
+
+            function search(){
+                var vl = $("#menu_src");
+                
             }
         </script>
     </div>

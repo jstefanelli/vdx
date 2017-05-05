@@ -1,13 +1,13 @@
 <div class="header">
-	<h1>Project VDX</h1>
-	<div class="searchbar">
-		<i class="fa fa-search"></i>
-	</div>
-	<div class="menubar">
-		<a class="button homebtn" href="<?php echo(VDX_HOME);?>/"><h1>Home</h1></a>
-		<a class="button browsebtn" href="<?php echo(VDX_HOME);?>/c"><h1>Browse Channels</h1></a>
-		<a class="button uploadbtn" href="<?php echo(VDX_HOME);?>/u"><h1>Upload a Video</h1></a>
-	</div>
+	<h1><a href="<?php echo(VDX_HOME); ?>">Project VDX</a></h1>
+	<form class="menubar" action="javascript:search()">
+		<input type="text" id="menu_src" class="searchArea" placeholder="Search" <?php
+			if(isset($_GET['search_val'])){
+				echo ("value='" . $_GET['search_val'] ."'");
+			}
+		?>/>
+		<a href="javascript:search()" class="fa fa-search" id="menu_btn"></a>
+	</form>
 <?php 	if(!is_logged()){ ?>
 	<div class="logincntr" id="menuLogin">
 		Login<br />
