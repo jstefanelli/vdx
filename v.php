@@ -1,6 +1,5 @@
 <?php
 	include_once 'header.php';
-	$ffg = FFMpeg\FFMpeg::create();
 ?>
 <!DOCTYPE html />
 <html>

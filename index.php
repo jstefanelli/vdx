@@ -13,22 +13,13 @@
 			include_once 'menu.php';
 		?>
 		<div class="index-content">
-			<div class="index-sidebar">
-				<h3 id="link_upload"><a href="u">Upload</a></h3><br/>
-				<h3>Register:</h3>
-				<form action="javascript:register()">
-					<input type="text" name="vdx_username" id="vdx_reg_username" placeholder="Username" /><br/>
-					<input type="password" name="vdx_password" id="vdx_reg_psw" placeholder="Password" /><br/>
-					<input type="password" name="vdx_password_confirm" id="vdx_reg_psw_2" placeholder="Confirm password" /><br/>
-					<input type="submit" value="Register" />
-				</form>
-			</div>
 			<div class="index-videos" id="vds">
 			</div>
 		</div>
 		<script>
 			function goto(id){
 				console.log("goto " + id);
+				window.location.href = "v/" + id;
 			}
 
 			function parse(data){
