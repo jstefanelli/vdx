@@ -29,6 +29,7 @@ include_once 'header.php';
                 <input type="text" id="txtTitle" /><br />
                 <input type="text" id="txtDesc" /><br />
             </div>
+            <progress min="0" max="100"/>
         <?php
         }
 

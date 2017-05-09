@@ -571,7 +571,7 @@
         progress:not([value])::-webkit-progress-bar {
             -webkit-appearance: none;
             border: none;
-            animation-name: repeatAnim;
+            animation-name: bar-progress;
             animation-duration: 3s;
             animation-iteration-count: infinite;
             background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(255, 255, 255, 0.5) 33%, rgba(255, 255, 255, 0.5) 66%, transparent 66%), -webkit-linear-gradient(left, rgba(32, 32, 170, 0.75), rgba(30, 255, 170, 0.75));
@@ -579,15 +579,26 @@
             background-position: -60px 0px, 0px 0px;
         }
         
+        @keyframes bar-progress{
+            0%{
+                background-position: -60px 0px, 0px 0px;
+            }
+            50%{
+                background-position: -30px 0px, 0px 0px;
+            }
+            100%{
+                background-position: 0px 0px, 0px 0px;
+            }
+        }
+
         progress:not([value])::-moz-progress-bar {
             -moz-appearance: none;
             border: none;
-            animation-name: repeatAnim;
-            animation-duration: 3s;
+            animation-name: bar-progress;
+            animation-duration: 10s;
             animation-iteration-count: infinite;
             background-image: -moz-linear-gradient(-45deg, transparent 33%, rgba(255, 255, 255, 0.5) 33%, rgba(255, 255, 255, 0.5) 66%, transparent 66%), -moz-linear-gradient(left, rgba(32, 32, 170, 0.75), rgba(30, 255, 170, 0.75));
             background-size: 30px 100%, 100% 100%;
-            background-position: -60px 0px, 0px 0px;
         }
         
         .video_title {
