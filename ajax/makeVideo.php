@@ -76,6 +76,8 @@ while($row = $res->fetch_array()){
     execInBackground("mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/thumb.jpg" . " --id " . $myId);  
     //file_put_contents(LCL_HOME . "/videos/" . $myId . "/uploaded.inf", "Uploaded to " . $row['address'] . " with command:\n" . "mono " . LCL_HOME . "/utils/vdxSync.exe --ip " . $row['address']. " --file " . LCL_HOME . "/videos/" . $myId . "/480p.mp4" . " --id " . $myId);
 }
+$qryEx = "UPDATE videos SET encoded = 1 WHERE id = '$myId'";
+$resEx = $db->query($qryEx);
 die("OK");
 
 function is_ajax(){

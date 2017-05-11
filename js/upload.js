@@ -82,7 +82,7 @@ function startUpload(file, cb) {
 }
 
 
-function startUpload(file, cb, progress) {
+function startUploadP(file, cb, progress) {
     var ups = new uploadStatus();
     ups.file = file;
 

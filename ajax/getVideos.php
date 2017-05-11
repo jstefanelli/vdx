@@ -7,10 +7,10 @@ if(!jIsAjax()){
 }
 
 if(!isset($_POST['qry'])){
-	$qry = "SELECT videos.*, users.username AS author FROM videos, users WHERE users.id = videos.user_id";
+	$qry = "SELECT videos.*, users.username AS author FROM videos, users WHERE users.id = videos.user_id AND videos.encoded = '1'";
 }else{
 	$vl = mysqli_real_escape_string($db, $_POST['qry']);
-	$qry = "SELECT videos.*, users.username AS author FROM videos, users WHERE title LIKE '%$vl%' AND users.id = videos.user_id";
+	$qry = "SELECT videos.*, users.username AS author FROM videos, users WHERE title LIKE '%$vl%' AND users.id = videos.user_id AND videos.encoded = '1'";
 }
 $res = mysqli_query($db, $qry);
 if(!$res){
