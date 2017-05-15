@@ -69,26 +69,27 @@
 		}
 		$db->close();
 		?>
-		<div class="playercontainer" >
-			<video id="vd1">
-				<source id="src0" />
-			</video>
-			<div class="playercontrols" id="ctrls">
-				<button id="play_pause_btn" class="playButton fa fa-play" onclick="playVideo(1)"></button>
-				<button id="volume_down_btn" class="volumeButton fa fa-volume-down"></button>
-				<button id="btn_240" class="qualitybutton selected">240</button>
-				<button id="btn_480" class="qualitybutton">480</button>
-				<button id="btn_orig" class="qualitybutton">original</button>
-				<button id="btn_fullscreen" class="qulaitybutton fa fa-expand"></button>
-				<progress id="progress" class="progress" min="0" max="100" value="0">0% progress</progress>
+		<div class="playercontainer">
+			<div class="video_side">
+				<h2><?php echo($title); ?></h2>
+				<h3>Uploaded by: <?php echo($uploader_name); ?></h3>
+				<br />
+				<h4><?php echo($desc); ?></h4>
+			</div>
+			<div class="video_main">
+				<video id="vd1">
+					<source id="src0" />
+				</video>
+				<div class="playercontrols" id="ctrls">
+					<button id="play_pause_btn" class="playButton fa fa-play" onclick="playVideo(1)"></button>
+					<button id="volume_down_btn" class="volumeButton fa fa-volume-down"></button>
+					<button id="btn_240" class="qualitybutton selected">240</button>
+					<button id="btn_480" class="qualitybutton">480</button>
+					<button id="btn_orig" class="qualitybutton">original</button>
+					<button id="btn_fullscreen" class="qulaitybutton fa fa-expand"></button>
+					<progress id="progress" class="progress" min="0" max="100" value="0">0% progress</progress>
+				</div>
 			</div>
 		</div>
-		<h1 class="video_title"><?php echo($title); ?></h1>
-		<h2 class="video_description"><?php echo($desc); ?></h2>
-		<h3 class="video_uploader">Uploaded by: <?php echo("<a href='". VDX_HOME . "/c/$uploader_id'>" . $uploader_name . "</a>"); ?></h3>
-		<div class="suggested_videos">
-			You may also like:
-				
-		</div>	
 	</body>
 </html>

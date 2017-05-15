@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
         mediaPlayer.addEventListener("ended", onVideoEnd);
         mediaPlayer.addEventListener("timeupdate", onVideoProgress);
         mediaPlayer.addEventListener("waiting", onVideoBuffering);
-        container = $(".playercontainer")[0];
+        container = $(".video_main")[0];
         container.addEventListener("mouseenter", function() {
             controls.removeClass("hidden");
         });
@@ -134,29 +134,35 @@ function switchFS(evetn) {
     if ((document.fullScreenElement && document.fullScreenElement !== null) ||
         (!document.mozFullScreen && !document.webkitIsFullScreen)) {
         if (document.documentElement.requestFullScreen) {
+            $(".header").css("display", "none");
             container.addClass("fullscreen");
             isFullscreen = true;
             document.documentElement.requestFullScreen();
         } else if (document.documentElement.mozRequestFullScreen) {
             container.addClass("fullscreen");
+            $(".header").css("display", "none");
             isFullscreen = true;
             document.documentElement.mozRequestFullScreen();
         } else if (document.documentElement.webkitRequestFullScreen) {
             container.addClass("fullscreen");
+            $(".header").css("display", "none");
             isFullscreen = true;
             document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
         }
     } else {
         if (document.cancelFullScreen) {
+            $(".header").css("display", "block");
             container.removeClass("fullscreen");
             isFullscreen = false;
             document.cancelFullScreen();
         } else if (document.mozCancelFullScreen) {
             container.removeClass("fullscreen");
+            $(".header").css("display", "block");
             isFullscreen = false;
             document.mozCancelFullScreen();
         } else if (document.webkitCancelFullScreen) {
             container.removeClass("fullscreen");
+            $(".header").css("display", "block");
             isFullscreen = false;
             document.webkitCancelFullScreen();
         }
