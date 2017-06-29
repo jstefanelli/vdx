@@ -77,8 +77,8 @@ include_once 'header.php';
             }
 
             function search(){
-                var vl = $("#menu_src");
-
+                var vl = $("#menu_src").val();
+                window.location.href = "<?php echo(VDX_HOME); ?>/?qry=" + vl;
             }
 
         </script>

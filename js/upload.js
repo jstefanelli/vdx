@@ -72,6 +72,7 @@ function startUpload(file, cb) {
     }
     $.post("ajax/upload_mk.php", { n_parts: ups.parts, part_size: ups.part_size, name: ups.name }, function(data) {
         if (data.startsWith('N')) {
+            alert("Upload request failed");
             return;
         }
         //console.log(data);
@@ -100,6 +101,7 @@ function startUploadP(file, cb, progress) {
     }
     $.post("ajax/upload_mk.php", { n_parts: ups.parts, part_size: ups.part_size, name: ups.name }, function(data) {
         if (data.startsWith('N')) {
+            alert("Upload request failed");
             return;
         }
         //console.log(data);

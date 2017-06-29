@@ -517,6 +517,7 @@
                 position: absolute;
                 background-color: transparent;
                 border: none;
+				 color: white;
                 bottom: 8px;
                 left: 5px;
                 width: 20px;
@@ -527,6 +528,7 @@
                 background-color: transparent;
                 border: none;
                 bottom: 8px;
+				 color: white;
                 left: 30px;
                 width: 30px;
             }
@@ -536,6 +538,7 @@
                 background-color: transparent;
                 border: none;
                 bottom: 8px;
+				 color: white;
                 right: 15px;
                 width: 20px;
                 text-align: center;
@@ -546,6 +549,7 @@
                 background-color: transparent;
                 border: none;
                 bottom: 8px;
+				 color: white;
                 right: 50px;
             }
             
@@ -554,6 +558,7 @@
                 background-color: transparent;
                 border: none;
                 bottom: 8px;
+				 color: white;
                 right: 120px;
             }
             
@@ -561,6 +566,7 @@
                 position: absolute;
                 background-color: transparent;
                 border: none;
+				 color: white;
                 bottom: 8px;
                 right: 160px;
             }

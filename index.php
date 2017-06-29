@@ -53,6 +53,18 @@
 				search();
 				$("#menu_src").on("keyup", search);
 			});
+			
 		</script>
+		<?php
+		if(isset($_GET['qry'])){
+			$qry = $_GET['qry'];
+			?>
+			<script>
+				$("#menu_src").val("<?php echo($qry); ?>");
+				search();
+			</script>
+			<?php
+		}	
+		?>
 	</body>
 </html>

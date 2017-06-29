@@ -25,6 +25,11 @@
 		?>
 		<script>
 
+		function search(){
+            var vl = $("#menu_src").val();
+            window.location.href = "<?php echo(VDX_HOME); ?>/?qry=" + vl;
+        }
+
 		var VDX_HOME = '<?php echo(VDX_HOME); ?>';
 		var video_id = <?php echo($video_id); ?>;
 
